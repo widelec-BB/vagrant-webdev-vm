@@ -15,13 +15,15 @@ Vagrant.configure("2") do |config|
   # disable synced directory /vagrant as it's not used
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
+  # disable changing default insecrue vagrant key
+  config.ssh.insert_key = false
+
   # basic provision (update and basic tools)
   config.vm.provision "shell", inline: <<-SHELL
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -y dist-upgrade
     apt-get -y upgrade
-    apt-get -y autoremove
     apt-get -y install wget git vim openssl unzip
   SHELL
 
@@ -36,6 +38,11 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, path: "provision/install_laravel-echo-server.sh"
   config.vm.provision "shell", privileged: false, path: "provision/install_redis.sh"
 
-  # prepare VM to be clean vagrant box
+  # setup hostname etc.
   config.vm.provision "shell", privileged: false, path: "provision/setup_base.sh"
+
+  # remove if there is something not needed anymore
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get -y autoremove
+  SHELL
 end
