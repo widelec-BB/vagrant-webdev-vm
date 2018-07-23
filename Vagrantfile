@@ -12,6 +12,9 @@ Vagrant.configure("2") do |config|
   # disable installing vb guest additions
   config.vbguest.auto_update = false
 
+  # disable synced directory /vagrant as it's not used
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
   # basic provision (update and basic tools)
   config.vm.provision "shell", inline: <<-SHELL
     export DEBIAN_FRONTEND=noninteractive
