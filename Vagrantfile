@@ -4,8 +4,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/stretch64"
 
-  config.vm.network "private_network", ip: "192.168.11.11"
-
   config.vm.provider "virtualbox" do |vb|
      vb.memory = "4096"
      vb.cpus = 2
@@ -21,7 +19,7 @@ Vagrant.configure("2") do |config|
     apt-get -y dist-upgrade
     apt-get -y upgrade
     apt-get -y autoremove
-    apt-get -y install wget git vim openssl
+    apt-get -y install wget git vim openssl unzip
   SHELL
 
   # install needed packages
