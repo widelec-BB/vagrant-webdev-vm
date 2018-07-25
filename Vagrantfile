@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get -y dist-upgrade
     apt-get -y upgrade
-    apt-get -y install wget git vim openssl unzip
+    apt-get -y install wget git vim openssl unzip mc nano
   SHELL
 
   # install needed packages
