@@ -9,9 +9,6 @@ Vagrant.configure("2") do |config|
      vb.cpus = 2
   end
 
-  # disable installing vb guest additions
-  config.vbguest.auto_update = false
-
   # disable synced directory /vagrant as it's not used
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
